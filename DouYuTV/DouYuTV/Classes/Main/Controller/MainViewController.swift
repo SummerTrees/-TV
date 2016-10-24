@@ -19,7 +19,7 @@ class MainViewController: UITabBarController {
         addChildVcWithSbName("Follow")
         addChildVcWithSbName("Profile")
         
-        self.tabBar.tintColor = UIColor.orangeColor()
+        self.tabBar.tintColor = UIColor.orange
     }
     
 }
@@ -28,7 +28,7 @@ class MainViewController: UITabBarController {
 // MARK:- 添加子控制器
 extension MainViewController {
 
-    private func addChildVcWithSbName(name:String) {
+    fileprivate func addChildVcWithSbName(_ name:String) {
         let childVc = UIStoryboard(name: name, bundle: nil).instantiateInitialViewController()!
         addChildViewController(childVc)
         

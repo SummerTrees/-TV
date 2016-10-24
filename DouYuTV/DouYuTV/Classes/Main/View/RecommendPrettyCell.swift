@@ -8,11 +8,19 @@
 
 import UIKit
 
-class RecommendPrettyCell: UICollectionViewCell {
+class RecommendPrettyCell: RecommendBaseCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var locationBtn: UIButton!
+    
+    override var anchor: AnchorItem? {
+        didSet {
+            //1.属性传递
+            super.anchor = anchor
+            
+            //2.设置
+            locationBtn.setTitle(anchor?.anchor_city, for: .normal)
+        
+        }
+    
     }
-
 }

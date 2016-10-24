@@ -12,10 +12,10 @@ private let kTitleH : CGFloat = 40
 
 class HomeViewController: UIViewController {
     
-    private var titles : [String] = ["推荐","娱乐","游戏","趣玩"]
+    fileprivate var titles : [String] = ["推荐","娱乐","游戏","趣玩"]
     
 
-    private lazy var pageTitleView : PageTitleView = {[weak self] in
+    fileprivate lazy var pageTitleView : PageTitleView = {[weak self] in
         
         let titleFrame = CGRect(x: 0, y: kNavigationBarH + kStatusBarH, width: kScreenW, height: kTitleH)
         let pageTitleView : PageTitleView = PageTitleView(frame: titleFrame, titles: (self?.titles)!)
@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         return pageTitleView
     }()
     
-    private lazy var pageContentView : PageContentView = {[weak self] in
+    fileprivate lazy var pageContentView : PageContentView = {[weak self] in
        
         let contentFrame = CGRect(x: 0, y: kNavigationBarH + kTitleH + kStatusBarH, width: kScreenW, height: kScreenH - kNavigationBarH - kTitleH - kStatusBarH - kTabbarH)
         let vcCount : Int = self!.titles.count - 1
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     // MARK: 设置UI
-    private func setupUI() {
+    fileprivate func setupUI() {
         // 0.不需要调整UIScrollView的内边距
         automaticallyAdjustsScrollViewInsets = false
         
@@ -73,14 +73,14 @@ extension HomeViewController {
     }
     
     
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         setupNavigationLeftBar()
         setupNavigationRightBar()
     }
-    private func setupNavigationLeftBar() {
+    fileprivate func setupNavigationLeftBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo", target: self, action: #selector(self.leftItemClick))
     }
-    private func setupNavigationRightBar() {
+    fileprivate func setupNavigationRightBar() {
         let size = CGSize(width: 40, height: 44)
         let historyItem = UIBarButtonItem(imageName: "image_my_history", highImageName: "image_my_history_click", size: size, target: self, action: #selector(self.historyItemClick))
         let searchItem = UIBarButtonItem(imageName: "btn_search", highImageName: "btn_search_click", size: size, target: self, action: #selector(self.searchItemClick))
@@ -93,7 +93,7 @@ extension HomeViewController {
 // MARK: pageTitleViewDelegate
 extension HomeViewController : pageTitleViewDelegate {
 
-    func pageTitleView(titleView: PageTitleView, selectedIndex index: Int) {
+    func pageTitleView(_ titleView: PageTitleView, selectedIndex index: Int) {
         
         pageContentView.scrollToIndex(index)
         
@@ -105,7 +105,7 @@ extension HomeViewController : pageTitleViewDelegate {
 // MARK: PageContentViewDelegate
 extension HomeViewController : PageContentViewDelegate {
     
-    func pageContentView(contentView: PageContentView, scrollProgress: CGFloat, sourceIndex: Int, targetIndex: Int) {
+    func pageContentView(_ contentView: PageContentView, scrollProgress: CGFloat, sourceIndex: Int, targetIndex: Int) {
         
         pageTitleView.setCurrentLabel(sourceIndex, targetIndex: targetIndex, progress: scrollProgress)
         
@@ -119,17 +119,17 @@ extension HomeViewController : PageContentViewDelegate {
 // MARK:点击事件
 extension HomeViewController {
     
-    @objc private func leftItemClick() {
+    @objc fileprivate func leftItemClick() {
         print("点击了logo")
     }
 
-    @objc private func qrCodeItemClick() {
+    @objc fileprivate func qrCodeItemClick() {
         print("点击了二维码")
     }
-    @objc private func searchItemClick() {
+    @objc fileprivate func searchItemClick() {
         print("点击了搜索")
     }
-    @objc private func historyItemClick() {
+    @objc fileprivate func historyItemClick() {
         print("点击了历史")
     }
 

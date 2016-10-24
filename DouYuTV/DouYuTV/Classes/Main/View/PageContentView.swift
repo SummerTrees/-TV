@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PageContentViewDelegate : class{
-    func pageContentView(contentView : PageContentView, scrollProgress : CGFloat,sourceIndex : Int, targetIndex : Int)
+    func pageContentView(_ contentView : PageContentView, scrollProgress : CGFloat,sourceIndex : Int, targetIndex : Int)
 }
 
 
@@ -18,30 +18,30 @@ private let kContentCellID = "contengCell"
 class PageContentView: UIView {
     
     // MARK:定义属性
-    private var childVcs : [UIViewController]
-    private var parentVc : UIViewController?
-    private var isTapGesture : Bool = false
-    private var startOffsetX : CGFloat = 0
+    fileprivate var childVcs : [UIViewController]
+    fileprivate var parentVc : UIViewController?
+    fileprivate var isTapGesture : Bool = false
+    fileprivate var startOffsetX : CGFloat = 0
     weak var delegate : PageContentViewDelegate?
     
     
     // MARK:懒加载属性
-    private lazy var collectionView : UICollectionView = {
+    fileprivate lazy var collectionView : UICollectionView = {
         //1.创建layout
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = self.bounds.size
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = .Horizontal
+        layout.scrollDirection = .horizontal
         //2.创建collectionView
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
         collectionView.bounces = false
-        collectionView.pagingEnabled = true
+        collectionView.isPagingEnabled = true
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: kContentCellID)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kContentCellID)
         return collectionView
     }()
 
@@ -65,7 +65,7 @@ class PageContentView: UIView {
 // MARK:设置UI
 extension PageContentView {
 
-    private func setupUI() {
+    fileprivate func setupUI() {
         //1.添加子控制器
         for childVc in childVcs {
             parentVc?.addChildViewController(childVc)
@@ -81,16 +81,16 @@ extension PageContentView {
 
 //MARK:UICollectionViewDataSource
 extension PageContentView :UICollectionViewDataSource{
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return childVcs.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let contentCell = collectionView.dequeueReusableCellWithReuseIdentifier(kContentCellID, forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let contentCell = collectionView.dequeueReusableCell(withReuseIdentifier: kContentCellID, for: indexPath)
         
                 //重复利用问题
                 for view in contentCell.contentView.subviews {
@@ -115,7 +115,7 @@ extension PageContentView :UICollectionViewDataSource{
 // MARK:UICollectionViewDelegate
 extension PageContentView : UICollectionViewDelegate {
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //不是点击事件
         isTapGesture = false
         
@@ -123,7 +123,7 @@ extension PageContentView : UICollectionViewDelegate {
     }
     
    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isTapGesture { return }
         
         //0.定义变量
@@ -177,7 +177,7 @@ extension PageContentView : UICollectionViewDelegate {
 
 // MARK:对外暴露的方法
 extension PageContentView {
-    func scrollToIndex(index : Int) {
+    func scrollToIndex(_ index : Int) {
         //点击手势,不进入滑动方法,避免混乱
         isTapGesture = true
         

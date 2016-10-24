@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,35 +12,34 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDe-gE-fVB">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
-                    <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.89730262756347656" green="0.89727580547332764" blue="0.89729094505310059" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="6Mp-tq-EBB"/>
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_header_phone" translatesAutoresizingMaskIntoConstraints="NO" id="75J-IH-TCT">
-                    <rect key="frame" x="10" y="21" width="18" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="ryO-Wa-OXc"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyY-HU-9Rd">
-                    <rect key="frame" x="33" y="20.5" width="32" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XS9-5Y-9KC">
-                    <rect key="frame" x="250" y="15" width="60" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="7HV-iU-jpr"/>
                     </constraints>
                     <state key="normal" title="更多 &gt;">
-                        <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleColor" red="0.36010122299194336" green="0.36671203374862671" blue="0.3987540602684021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="moreBtnClick:" destination="EY1-jT-DL0" eventType="touchUpInside" id="wn3-iH-4Tx"/>
+                    </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="XS9-5Y-9KC" secondAttribute="trailing" constant="10" id="74C-Nf-S3X"/>
                 <constraint firstItem="jyY-HU-9Rd" firstAttribute="leading" secondItem="75J-IH-TCT" secondAttribute="trailing" constant="5" id="7L3-4f-gV9"/>
@@ -53,6 +52,10 @@
                 <constraint firstItem="75J-IH-TCT" firstAttribute="leading" secondItem="EY1-jT-DL0" secondAttribute="leading" constant="10" id="llS-ra-lVc"/>
                 <constraint firstItem="WDe-gE-fVB" firstAttribute="leading" secondItem="EY1-jT-DL0" secondAttribute="leading" id="qd9-Bk-2gp"/>
             </constraints>
+            <connections>
+                <outlet property="iconImageView" destination="75J-IH-TCT" id="DDC-nM-zzz"/>
+                <outlet property="titleLabel" destination="jyY-HU-9Rd" id="zy7-tv-hB1"/>
+            </connections>
             <point key="canvasLocation" x="118" y="223"/>
         </collectionReusableView>
     </objects>

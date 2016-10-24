@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class CollectionSHeaderView: UICollectionReusableView {
 
     // 1.属性
@@ -15,6 +16,13 @@ class CollectionSHeaderView: UICollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     
     //2.模型属性
+    var groupItem : AnchorGroupItem? {
+        didSet {
+            titleLabel.text = groupItem?.tag_name
+            iconImageView.image = UIImage(named: groupItem?.icon_name ?? "home_header_normal")
+        
+        }
+    }
     
     
     
@@ -24,7 +32,7 @@ class CollectionSHeaderView: UICollectionReusableView {
 // MARK:点击事件
 extension CollectionSHeaderView {
 
-    @IBAction func moreBtnClick(sender: UIButton) {
+    @IBAction func moreBtnClick(_ sender: UIButton) {
         print("点击了更多")
     }
 
